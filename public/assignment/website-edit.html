@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Choose Widget</title>
+    <title>Edit Website</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -12,18 +12,18 @@
 <nav class="navbar tv-blue-navbar navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <p class="navbar-text pull-left">
-                <a href="profile.html" class="navbar-link tv-text-white tv-icon-padding">
+        <p class="navbar-text pull-left">
+                <a href="website-list.html" class="navbar-link tv-text-white tv-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
                 </a>
             </p>
             <a class="navbar-brand tv-text-white tv-text-bold" href="#">
-                Websites
+                Edit Website
             </a>
             <p class="navbar-text pull-right col-xs-3 text-right">
-                <a href="website-new.html" class="navbar-link tv-icon-padding tv-text-white">
-          <span class="glyphicon glyphicon-plus">
+                <a href="website-list.html" class="navbar-link tv-text-white tv-icon-padding">
+          <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
             </p>
@@ -32,20 +32,23 @@
 </nav>
 
 
-<div class="container tv-container-padding">
+    <div class="container tv-container-padding">
+       
 
+        <form>
+            <div>
+                <label for="name">Website Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="description">Website Description</label>
+                <textarea class="form-control" rows="5" id="description" placeholder="Description"></textarea>
+            </div>
+        <a class="btn btn-danger  btn-block"
+           href="website-list.html">Delete</a>
+        </form>
 
-    <ul class="list-unstyled">
-        <li><a href="page-list.html">Website Name</a>
-            <p class="pull-right col-xs-3 text-right">
-            <a href="website-edit.html">
-          <span class="glyphicon glyphicon-cog">
-          </span>
-            </a>
-        </p></li>
-    </ul>
-
-</div>
+    </div>
 
 <nav class="navbar tv-blue-navbar navbar-fixed-bottom">
     <div class="container">

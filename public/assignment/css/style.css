@@ -31,9 +31,9 @@ a:hover{
     font-weight: bold;
 }
 
-.tv-icon-padding{
-    padding-left: 20px;
-    padding-right: 20px;
+.tv-icon-padding {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .tv-header-padding{
@@ -41,5 +41,45 @@ a:hover{
 }
 
 .tv-full-width{
-    width: 95%;
+    width: 100%;
+}
+
+.tv-widget-list-item{
+    padding-bottom: 20px;
+}
+
+.tv-v-divider{
+    border-right: 1px solid #808080;
+    height: 100%;
+}
+
+.tv-widget-heading{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.tv-widget-paragraph{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.tv-height{
+    height: 100%;
+    min-height: 100%;
+}
+
+.tv-relative-position{
+    position: relative;
+}
+.tv-absolute-position{
+    position: absolute;
+}
+.tv-widget-list-icons{
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    background-color: white;
+}
+.tv-zero-right-padding{
+    padding-right: 0px;
 }

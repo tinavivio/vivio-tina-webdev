@@ -10,33 +10,60 @@
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-        <p class="navbar-text pull-left">
+    <div class="container-fluid row"><div class="col-xs-4 hidden-xs">
+
+            <div class="navbar-text pull-left">
+                <a href="page-list.html" class="navbar-link tv-text-white tv-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#" class="navbar-link tv-icon-padding tv-text-white">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+                </a>
+            </div>
+            <a class="navbar-brand tv-text-white tv-text-bold" href="page-list.html">
+                Pages
+            </a></div>
+        <div class="col-xs-12 col-sm-8">
+
+        <div class="hidden-sm hidden-md hidden-lg navbar-text pull-left">
                 <a href="page-list.html" class="tv-text-black tv-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
                 </a>
-            </p>
-            <a class="navbar-brand tv-text-bold" href="#">
-                New Page
-            </a>
-            <p class="navbar-text pull-right col-xs-3 text-right">
+            </div>
+            <div class="navbar-text pull-right">
                 <a href="page-list.html" class="tv-text-black tv-icon-padding">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
-            </p>
+            </div>
+            <a class="navbar-brand tv-text-bold" href="#">
+                New Page
+            </a>
+
         </div>
     </div>
 </nav>
 
 
-    <div class="container tv-container-padding">
-       
+    <div class="container-fluid tv-container-padding">
 
+        <div class="col-xs-4 hidden-xs"><ul class="list-unstyled">
+            <li><div class="pull-right">
+                <a href="page-edit.html">
+          <span class="glyphicon glyphicon-cog">
+          </span>
+                </a>
+            </div><a href="widget-list.html">Page Name</a>
+            </li>
+        </ul></div>
+        <div class="col-xs-12 col-sm-8">
         <form>
-            <div class="form-group formfirstrow">
+            <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Page Name">
             </div>
@@ -45,17 +72,17 @@
                 <input type="text" class="form-control" id="title" placeholder="Page Title">
             </div>
         </form>
-
+    </div>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-right pull-right">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-right">
+
                 <a href="profile.html" class="tv-icon-padding">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
-            </div>
+
         </div>
     </div>
 </nav>

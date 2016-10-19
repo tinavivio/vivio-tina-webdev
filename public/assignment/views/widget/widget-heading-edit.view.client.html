@@ -1,30 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Widget Edit</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid row">
 
         <div class="navbar-text pull-left">
-                <a href="widget-list.html" class="tv-icon-padding tv-text-black">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="tv-icon-padding tv-text-black">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="widget-list.html" class="tv-icon-padding tv-text-black">
+                <a ng-click="model.updateHeader(model.size,model.text)" class="tv-icon-padding tv-text-black">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
             </div>
-            <a class="navbar-brand tv-text-bold" href="#">
+            <a class="navbar-brand tv-text-bold" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
                 Widget Edit
             </a>
 
@@ -43,14 +32,14 @@
             </div>
             <div class="form-group">
                 <label for="text">Text</label>
-                <input type="text" class="form-control" id="text" placeholder="Man Who Baked Banana Bread Spends Entire Party Anxiously Watching It Go Uneaten">
+                <input ng-model="model.text" type="text" class="form-control" id="text" placeholder="Man Who Baked Banana Bread Spends Entire Party Anxiously Watching It Go Uneaten">
             </div>
             <div class="form-group">
                 <label for="size">Size</label>
-                <input type="text" class="form-control" id="size" placeholder="3">
+                <input ng-model="model.size" type="text" class="form-control" id="size" placeholder="3">
             </div>
         <a class="btn btn-danger  btn-block"
-           href="widget-list.html">Delete</a>
+           ng-click="model.deleteWidget()">Delete</a>
         </form>
 
     </div>
@@ -59,13 +48,10 @@
     <div class="container-fluid row">
         <div class="pull-right navbar-text">
 
-                <a href="profile.html" class="tv-icon-padding">
+                <a href="#/user/{{model.userId}}" class="tv-icon-padding">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
 
         </div>
     </div>
 </nav>
-
-</body>
-</html>

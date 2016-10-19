@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row">
+
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="tv-text-black tv-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="tv-icon-padding tv-text-black">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+                </a>
+            </div>
+            <a class="navbar-brand tv-text-white tv-text-bold" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                Widgets
+            </a>
+
+        </div>
+
+</nav>
+
+
+<div class="container tv-container-padding">
+
+
+    <div ng-repeat="widget in model.widgets" ng-switch on="widget.widgetType">
+        <div ng-switch-when="HEADER">
+            <ng-include src="'views/widget/widget-heading.view.client.html'">
+        </div>
+        <div ng-switch-when="IMAGE">
+            <ng-include src="'views/widget/widget-image.view.client.html'">
+        </div>
+        <div ng-switch-when="YOUTUBE">
+            <ng-include src="'views/widget/widget-youtube.view.client.html'">
+        </div>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left"><span class="pull-right tv-icon-padding tv-text-black glyphicon glyphicon-eye-open"></span>
+            <span class="tv-icon-padding tv-text-black glyphicon glyphicon-play"></span>
+        </div>
+        <div class="pull-right navbar-text">
+
+                <a href="#/user/{{model.userId}}" class="tv-icon-padding">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+
+        </div>
+    </div>
+</nav>

@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Widget Edit</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid row">
         <div class="navbar-text pull-left">
-                <a href="widget-list.html" class="tv-icon-padding tv-text-black">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="tv-icon-padding tv-text-black">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="widget-list.html" class="tv-icon-padding tv-text-black">
+                <a ng-click="model.updateImage(model.width,model.url)" class="tv-icon-padding tv-text-black">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
             </div>
-            <a class="navbar-brand tv-text-bold" href="#">
+            <a class="navbar-brand tv-text-bold" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
                 Widget Edit
             </a>
 
@@ -46,11 +35,11 @@
             </div>
             <div class="form-group">
                 <label for="url">URL</label>
-                <input type="text" class="form-control" id="url" placeholder="http://www.krusteaz.com/sites/krusteaz.com/files/styles/product_hero/public/images/products/heroes/krusteaz-buttermilk-pancakes.jpg?itok=ut9Y-Rfb">
+                <input ng-model="model.url" type="text" class="form-control" id="url" placeholder="http://www.krusteaz.com/sites/krusteaz.com/files/styles/product_hero/public/images/products/heroes/krusteaz-buttermilk-pancakes.jpg?itok=ut9Y-Rfb">
             </div>
             <div class="form-group">
                 <label for="width">Width</label>
-                <input type="text" class="form-control" id="width" placeholder="100%">
+                <input ng-model="model.width" type="text" class="form-control" id="width" placeholder="100%">
             </div>
             <div class="form-group">
                 <label for="file">Upload</label>
@@ -58,7 +47,7 @@
             </div>
             <a class="btn btn-primary btn-block">Upload Image</a>
         <a class="btn btn-danger  btn-block"
-           href="widget-list.html">Delete</a>
+           ng-click="model.deleteWidget()">Delete</a>
         </form>
 
     </div>
@@ -67,13 +56,10 @@
     <div class="container-fluid row">
         <div class="pull-right navbar-text">
 
-                <a href="profile.html" class="tv-icon-padding">
+                <a href="#/user/{{model.userId}}" class="tv-icon-padding">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
 
         </div>
     </div>
 </nav>
-
-</body>
-</html>

@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row">
+
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website" class="tv-text-black tv-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="tv-icon-padding tv-text-black">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+                </a>
+            </div>
+            <a class="navbar-brand tv-text-white tv-text-bold" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                Pages
+            </a>
+
+
+    </div>
+</nav>
+
+
+<div class="container tv-container-padding">
+
+    <div ng-repeat="page in model.pages"><div class="pull-right">
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+          <span class="glyphicon glyphicon-cog">
+          </span>
+        </a>
+    </div><a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid row">
+        <div class="pull-right navbar-text">
+
+                <a href="#/user/{{model.userId}}" class="tv-icon-padding">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+
+        </div>
+    </div>
+</nav>

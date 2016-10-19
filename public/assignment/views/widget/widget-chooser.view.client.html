@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row">
+
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="tv-icon-padding tv-text-black">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+                </a>
+            </div>
+            <a class="navbar-brand tv-text-bold" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                Choose Widget
+            </a>
+
+
+    </div>
+</nav>
+
+
+<div class="container tv-container-padding">
+
+
+    <ul class="list-unstyled">
+        <li><a ng-click="model.createHeader()">Header</a></li>
+        <li><a ng-click="model.createImage()">Image</a></li>
+        <li><a ng-click="model.createYoutube()">Youtube</a></li>
+    </ul>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid row">
+        <div class="pull-right navbar-text">
+
+                <a href="#/user/{{model.userId}}" class="tv-icon-padding">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+
+        </div>
+    </div>
+</nav>

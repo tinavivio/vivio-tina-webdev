@@ -48,8 +48,12 @@
         }
         init();
         function createPage(page) {
-            PageService.createPage(vm.websiteId, page);
-            $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+            if(page===undefined || page.name===null || page.name===undefined || page.name===""){
+                vm.error="Must provide page name!";
+            }else {
+                PageService.createPage(vm.websiteId, page);
+                $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+            }
         }
     }
     function EditPageController($location,$routeParams,UserService,WebsiteService,PageService,WidgetService){
@@ -83,9 +87,13 @@
         }
         init();
         function updatePage(pageName) {
-            var page = {"name" : pageName};
-            PageService.updatePage(vm.pageId, page);
-            $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+            if(pageName===null || pageName===undefined || pageName===""){
+                vm.error="Must provide page name!";
+            }else {
+                var page = {"name": pageName};
+                PageService.updatePage(vm.pageId, page);
+                $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+            }
         }
         function deletePage() {
             var widgets = WidgetService.findWidgetsByPageId(vm.pageId);

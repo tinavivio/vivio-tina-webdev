@@ -5,34 +5,38 @@
         .controller("RegisterController", RegisterController)
         .controller("ProfileController",ProfileController);
 
-    function LoginController($location,$window,UserService) {
+    function LoginController($location,UserService) {
         var vm = this;
         vm.login = login;
         function login() {
-            UserService.findUserByCredentials(vm.user.username, vm.user.password,function(user){
-                if(user!==null) {
-                    $location.url("/user/" + user._id);
-                } else {
-                    $window.alert("Unable to login! User not recognized.");
-                }
-            });
+            if(vm.user===undefined || vm.user.username===null || vm.user.username===undefined || vm.user.username==="" || vm.user.password===null|| vm.user.password===undefined || vm.user.username===""){
+                vm.error="Cannot login without username and password.";
+            }else {
+                UserService.findUserByCredentials(vm.user.username, vm.user.password, function (user) {
+                    if (user !== null) {
+                        $location.url("/user/" + user._id);
+                    } else {
+                        vm.error = "Unable to login! User not recognized.";
+                    }
+                });
+            }
         }
     }
-    function RegisterController($location,$window,UserService) {
+    function RegisterController($location,UserService) {
         var vm = this;
         vm.createUser = createUser;
         function createUser(user) {
-            if(user.username===null || user.username===undefined || user.username==="" || user.password===null || user.password===undefined || user.password===""){
-                $window.alert("Unable to register! Please provide both username and password.");
+            if(user===undefined || user.username===null || user.username===undefined || user.username==="" || user.password===null || user.password===undefined || user.password===""){
+                vm.error ="Unable to register! Please provide both username and password.";
             }else if(user.password!==user.verifyPassword){
-                $window.alert("Passwords must match!");
+                vm.error = "Passwords must match!";
             }else {
                 var newUser = UserService.createUser(user);
                 $location.url("/user/" + newUser._id);
             }
         }
     }
-    function ProfileController($location,$window,$routeParams,UserService){
+    function ProfileController($location,$routeParams,UserService){
         var vm = this;
         var userId = parseInt($routeParams.uid);
         var user = UserService.findUserById(userId);
@@ -51,7 +55,7 @@
         function updateUser(firstName,lastName) {
             var user = {"firstName": firstName,"lastName" : lastName};
             UserService.updateUser(vm.userId, user);
-            $window.alert("User details have been changed.");
+            vm.notify= "User details have been changed successfully.";
         }
     }
 })();

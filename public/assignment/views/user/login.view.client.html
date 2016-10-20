@@ -1,4 +1,7 @@
  <div class="container">
+         <div ng-show="login.error" class="alert alert-danger" role="alert">
+                 {{login.error}}
+         </div>
         <h1>Login</h1>
         <input ng-model="login.user.username" type="text"
                class="form-control"

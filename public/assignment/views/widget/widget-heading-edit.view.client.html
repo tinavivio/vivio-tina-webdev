@@ -23,7 +23,9 @@
 
 
     <div class="container tv-container-padding">
-       
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
 
         <form>
             <div>

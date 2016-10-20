@@ -1,6 +1,11 @@
 <div class="tv-widget-list-item">
-    <div class="tv-relative-position">
-        <h3 class="tv-widget-heading">{{widget.text}}</h3>
+    <div ng-switch="widget.size" class="tv-relative-position">
+        <h1 ng-switch-when="1" class="tv-widget-heading">{{widget.text}}</h1>
+        <h2 ng-switch-when="2" class="tv-widget-heading">{{widget.text}}</h2>
+        <h3 ng-switch-when="3" class="tv-widget-heading">{{widget.text}}</h3>
+        <h4 ng-switch-when="4" class="tv-widget-heading">{{widget.text}}</h4>
+        <h5 ng-switch-when="5" class="tv-widget-heading">{{widget.text}}</h5>
+        <h6 ng-switch-when="6" class="tv-widget-heading">{{widget.text}}</h6>
         <div class="tv-absolute-position tv-widget-list-icons tv-zero-right-padding">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
             <span class="glyphicon glyphicon-align-justify"></span>

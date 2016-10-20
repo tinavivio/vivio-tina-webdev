@@ -1,4 +1,7 @@
  <div class="container">
+     <div ng-show="register.error" class="alert alert-danger" role="alert">
+         {{register.error}}
+     </div>
         <h1>Register</h1>
          <input ng-model="register.user.firstName" type="text"
                 class="form-control"

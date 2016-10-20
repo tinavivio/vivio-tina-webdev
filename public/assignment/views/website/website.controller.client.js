@@ -34,8 +34,12 @@
         }
         init();
         function createWebsite(website) {
-            WebsiteService.createWebsite(vm.userId, website);
-            $location.url("/user/" + userId + "/website");
+            if(website===undefined || website.name===null || website.name===undefined || website.name===""){
+                vm.error = "Must provide website name!";
+            }else {
+                WebsiteService.createWebsite(vm.userId, website);
+                $location.url("/user/" + userId + "/website");
+            }
         }
     }
     function EditWebsiteController($location,$routeParams,UserService,WebsiteService,PageService,WidgetService){
@@ -62,9 +66,13 @@
         }
         init();
         function updateWebsite(websiteName) {
-            var website = {"name" : websiteName};
-            WebsiteService.updateWebsite(vm.websiteId, website);
-            $location.url("/user/" + userId + "/website");
+            if(websiteName===null || websiteName===undefined || websiteName===""){
+                vm.error = "Must provide website name!";
+            }else {
+                var website = {"name": websiteName};
+                WebsiteService.updateWebsite(vm.websiteId, website);
+                $location.url("/user/" + userId + "/website");
+            }
         }
         function deleteWebsite() {
             var pages = PageService.findPagesByWebsiteId(vm.websiteId);

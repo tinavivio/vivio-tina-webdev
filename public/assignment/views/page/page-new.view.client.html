@@ -43,6 +43,9 @@
 
         <div class="col-xs-4 hidden-xs"><div ng-include src="'views/page/page-list-without-header-and-footer.view.client.html'"></div></div>
         <div class="col-xs-12 col-sm-8">
+            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                {{model.error}}
+            </div>
         <form>
             <div class="form-group">
                 <label for="name">Name</label>

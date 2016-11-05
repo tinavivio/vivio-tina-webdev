@@ -9,16 +9,21 @@
         var vm = this;
         vm.login = login;
         function login() {
-            if(vm.user===undefined || vm.user.username===null || vm.user.username===undefined || vm.user.username==="" || vm.user.password===null|| vm.user.password===undefined || vm.user.username===""){
-                vm.error="Cannot login without username and password.";
-            }else {
-                UserService.findUserByCredentials(vm.user.username, vm.user.password, function (user) {
-                    if (user !== null) {
-                        $location.url("/user/" + user._id);
-                    } else {
+            if (vm.user === undefined || vm.user.username === null || vm.user.username === undefined || vm.user.username === "" || vm.user.password === null || vm.user.password === undefined || vm.user.username === "") {
+                vm.error = "Cannot login without username and password.";
+            } else {
+                var promise = UserService.findUserByCredentials(vm.user.username, vm.user.password);
+                promise
+                    .success(function (user) {
+                        if (user !== '0') {
+                            $location.url("/user/" + user._id);
+                        } else {
                         vm.error = "Unable to login! User not recognized.";
-                    }
-                });
+                        }
+                    })
+                    .error(function(){
+
+                    });
             }
         }
     }
@@ -31,31 +36,48 @@
             }else if(user.password!==user.verifyPassword){
                 vm.error = "Passwords must match!";
             }else {
-                var newUser = UserService.createUser(user);
-                $location.url("/user/" + newUser._id);
+                var promise = UserService.createUser(user);
+                promise
+                    .success(function(newUser) {
+                        $location.url("/user/" + newUser._id);
+                    })
+                    .error(function(){
+
+                    });
             }
         }
     }
     function ProfileController($location,$routeParams,UserService){
         var vm = this;
-        var userId = parseInt($routeParams.uid);
-        var user = UserService.findUserById(userId);
         vm.updateUser = updateUser;
         function init() {
-            if (user !== null) {
-                vm.userId = userId;
-                vm.username = user.username;
-                vm.firstName = user.firstName;
-                vm.lastName = user.lastName;
-            }else{
-                $location.url("/login");
-            }
+            var userId = parseInt($routeParams.uid);
+            var promise = UserService.findUserById(userId);
+            promise
+                .success(function(user){
+                    if (user !== '0') {
+                        vm.userId = userId;
+                        vm.username = user.username;
+                        vm.firstName = user.firstName;
+                        vm.lastName = user.lastName;
+                    }else{
+                        $location.url("/login");
+                    }
+                })
+                .error(function(){
+
+                });
         }
         init();
         function updateUser(firstName,lastName) {
             var user = {"firstName": firstName,"lastName" : lastName};
-            UserService.updateUser(vm.userId, user);
-            vm.notify= "User details have been changed successfully.";
+            UserService.updateUser(vm.userId, user)
+                .success(function(){
+                    vm.notify = "User details have been changed successfully.";
+                })
+                .error(function(){
+
+                });
         }
     }
 })();

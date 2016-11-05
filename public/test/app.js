@@ -1,57 +1,36 @@
-(function() {
+(function(){
     angular
-        .module("TestApp", [])
-        .controller("TestController", TestController)
-        .filter('reverse', function() {
-            return function(items) {
-                return items.slice().reverse();
-            };
-        });
+        .module("SortListApp", ["ngRoute", "jgaDirectives"])
+        .controller("SampleController", SampleController);
 
-    function TestController($http) {
+    var items = [
+        {first: "Alice", last: "Wonderland", email: "alice@email.com"},
+        {first: "Bob", last: "Hope", email: "bob@oscars.com"},
+        {first: "Charlie", last: "Brown", email: "charlie@schultz.com"},
+        {first: "John", last: "Smith", email: "smith@schultz.com"}
+    ];
+
+    function SampleController($scope){
+
         var vm = this;
-        vm.createMessage = createMessage;
-        vm.deleteMessage = deleteMessage;
+        vm.items = items;
 
-        function init() {
-            findAllMessages();
-        }
-        init();
+        vm.sortItem = sortItem;
 
-        function createMessage(message) {
-            vm.message = "";
-            var obj = {
-                message: message
-            };
-            $http.post("/api/test", obj)
-                .then(
-                    findAllMessages,
-                    function(err) {
-                        vm.error = err;
-                    }
-                );
-        }
+        function sortItem(start, end) {
+            console.log("start: " + start);
+            console.log("end: " + end);
 
-        function deleteMessage(message) {
-            $http.delete("/api/test/" + message._id)
-                .then(
-                    findAllMessages,
-                    function(err) {
-                        vm.error = err;
-                    }
-                );
-        }
+            var moved = vm.items.splice(start, 1)[0];
+            //var moved = vm.items.splice(start, 1);
+            console.log("moved: " + moved.first);
 
-        function findAllMessages() {
-            $http.get("/api/test")
-                .then(
-                    function(response) {
-                        vm.messages = response.data;
-                    },
-                    function(err) {
-                        vm.error = err;
-                    }
-                );
+            vm.items.splice(end, 0,moved );
+
+            for(var i in vm.items){
+                console.log(vm.items[i].first);
+            }
         }
     }
+
 })();

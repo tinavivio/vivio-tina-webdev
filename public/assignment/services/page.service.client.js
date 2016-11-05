@@ -2,13 +2,7 @@
     angular
         .module("WebAppMaker")
         .factory("PageService", PageService);
-    function PageService() {
-        var pages = [
-                { "_id": "321", "name": "Post 1", "websiteId": "456" },
-                { "_id": "432", "name": "Post 2", "websiteId": "456" },
-                { "_id": "543", "name": "Post 3", "websiteId": "456" }
-            ]
-            ;
+    function PageService($http) {
         var api = {
             createPage : createPage,
             findPagesByWebsiteId : findPagesByWebsiteId,
@@ -18,45 +12,24 @@
         };
         return api;
         function createPage(websiteId,page) {
-            page._id = parseInt(pages[pages.length-1]._id) + 1;
-            page.websiteId=websiteId;
-            pages.push(page);
+            var url = '/assignment/api/website/' + websiteId + '/page';
+            return $http.post(url,page);
         }
         function findPagesByWebsiteId(websiteId) {
-            var arr = [];
-            for(var i = 0; i < pages.length; i++){
-                if(parseInt(pages[i].websiteId)===parseInt(websiteId)){
-                    arr.push(pages[i]);
-                }
-            }
-            return arr;
+            var url = '/assignment/api/website/' + websiteId + '/page';
+            return $http.get(url);
         }
         function findPageById(pageId) {
-            for(var i = 0; i < pages.length; i++){
-                if(parseInt(pages[i]._id)===parseInt(pageId)){
-                    return pages[i];
-                    break;
-                }
-            }
-            return null;
+            var url = '/assignment/api/page/' + pageId;
+            return $http.get(url);
         }
         function updatePage(pageId,page) {
-            for(var i = 0; i < pages.length; i++){
-                if(parseInt(pages[i]._id)===parseInt(pageId)){
-                    page._id = pages[i]._id;
-                    page.websiteId = pages[i].websiteId;
-                    pages.splice(i,1,page);
-                    break;
-                }
-            }
+            var url = '/assignment/api/page/' + pageId;
+            return $http.put(url,page);
         }
         function deletePage(pageId) {
-            for(var i = 0; i < pages.length; i++){
-                if(parseInt(pages[i]._id)===parseInt(pageId)){
-                    pages.splice(i,1);
-                    break;
-                }
-            }
+            var url = '/assignment/api/page/' + pageId;
+            return $http.delete(url);
         }
     }
 })();

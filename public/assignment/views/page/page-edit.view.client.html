@@ -26,7 +26,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a ng-click="model.updatePage(model.name)" class="tv-text-black tv-icon-padding">
+                <a ng-click="model.updatePage(model.name,model.title,model.description)" class="tv-text-black tv-icon-padding">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
@@ -55,7 +55,11 @@
             </div>
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" placeholder="Page Title">
+                <input ng-model="model.title" type="text" class="form-control" id="title" placeholder="Page Title">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea ng-model="model.description" class="form-control" rows="5" id="description" placeholder="Description"></textarea>
             </div>
         <a class="btn btn-danger  btn-block"
            ng-click="model.deletePage()">Delete</a>

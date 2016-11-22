@@ -24,7 +24,7 @@
 
 <div class="container tv-container-padding">
     <div jga-sortable jga-sortable-callback="model.sortWidgets(start,end)">
-    <div ng-repeat="widget in model.widgets" ng-switch on="widget.widgetType">
+    <div ng-repeat="widget in model.widgets" ng-switch on="widget.type">
         <div ng-switch-when="HEADER">
             <ng-include src="'views/widget/widget-heading.view.client.html'">
         </div>
@@ -33,6 +33,12 @@
         </div>
         <div ng-switch-when="YOUTUBE">
             <ng-include src="'views/widget/widget-youtube.view.client.html'">
+        </div>
+        <div ng-switch-when="HTML">
+            <ng-include src="'views/widget/widget-html.view.client.html'">
+        </div>
+        <div ng-switch-when="TEXT">
+            <ng-include src="'views/widget/widget-text.view.client.html'">
         </div>
     </div></div>
 

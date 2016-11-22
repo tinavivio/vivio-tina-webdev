@@ -2,7 +2,7 @@
     <div class="container-fluid row">
 
             <div class="navbar-text pull-right">
-                <a ng-click="model.updateUser(model.firstName,model.lastName)" class="navbar-link tv-text-white tv-icon-padding">
+                <a ng-click="model.updateUser(model.firstName,model.lastName,model.email,model.phone)" class="navbar-link tv-text-white tv-icon-padding">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
@@ -38,12 +38,18 @@
             <label for="last-name">Last Name</label>
             <input ng-model="model.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
         </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input ng-model="model.phone" type="text" class="form-control" id="phone" placeholder="123-456-7890">
+        </div>
     </form>
 
     <a class="btn btn-primary btn-block"
        href="#/user/{{model.userId}}/website">Websites</a>
     <a class="btn btn-danger  btn-block"
        href="#/login">Logout</a>
+    <a class="btn btn-warning btn-block"
+       ng-click="model.deleteUser()">Unregister</a>
 </div>
 
 <nav class="navbar navbar-fixed-bottom tv-blue-navbar">

@@ -8,7 +8,7 @@
     function WebsiteListController($location,$routeParams, UserService,WebsiteService) {
         var vm = this;
         function init() {
-            var userId = parseInt($routeParams.uid);
+            var userId = $routeParams.uid;
             var promise = UserService.findUserById(userId);
             promise
                 .success(function(user){
@@ -17,7 +17,9 @@
                         var promise = WebsiteService.findWebsitesByUserId(userId);
                         promise
                             .success(function(websites){
-                                vm.websites = websites;
+                                if(websites!=='0'){
+                                    vm.websites = websites;
+                                }
                             })
                             .error(function(){
 
@@ -36,7 +38,7 @@
         var vm = this;
         vm.createWebsite = createWebsite;
         function init() {
-            var userId = parseInt($routeParams.uid);
+            var userId = $routeParams.uid;
             var promise = UserService.findUserById(userId);
             promise
                 .success(function(user){
@@ -45,7 +47,9 @@
                         var promise = WebsiteService.findWebsitesByUserId(userId);
                         promise
                             .success(function(websites){
-                                vm.websites = websites;
+                                if(websites!=='0'){
+                                    vm.websites = websites;
+                                }
                             })
                             .error(function(){
 
@@ -73,13 +77,13 @@
             }
         }
     }
-    function EditWebsiteController($location,$routeParams,UserService,WebsiteService,PageService,WidgetService){
+    function EditWebsiteController($location,$routeParams,UserService,WebsiteService){
         var vm = this;
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
         function init() {
-            var userId = parseInt($routeParams.uid);
-            var websiteId = parseInt($routeParams.wid);
+            var userId = $routeParams.uid;
+            var websiteId = $routeParams.wid;
             var promise = UserService.findUserById(userId);
             promise
                 .success(function(user) {
@@ -88,7 +92,9 @@
                         var promise1 = WebsiteService.findWebsitesByUserId(userId);
                         promise1
                             .success(function (websites) {
-                                vm.websites = websites;
+                                if(websites!=='0'){
+                                    vm.websites = websites;
+                                }
                             })
                             .error(function () {
 
@@ -99,6 +105,7 @@
                                 if (website !== '0') {
                                     vm.websiteId = websiteId;
                                     vm.name = website.name;
+                                    vm.description = website.description;
                                 } else {
                                     $location.url("/user/" + vm.userId + "/website");
                                 }
@@ -115,11 +122,11 @@
                 });
         }
         init();
-        function updateWebsite(websiteName) {
+        function updateWebsite(websiteName,description) {
             if(websiteName===null || websiteName===undefined || websiteName===""){
                 vm.error = "Must provide website name!";
             }else {
-                var website = {"name": websiteName};
+                var website = {"name": websiteName,"description":description};
                 WebsiteService.updateWebsite(vm.websiteId, website)
                     .success(function(){
                         $location.url("/user/" + vm.userId + "/website");
@@ -130,14 +137,6 @@
             }
         }
         function deleteWebsite() {
-            var pages = PageService.findPagesByWebsiteId(vm.websiteId);
-            for(var i = 0;i<pages.length;i++){
-                var widgets = WidgetService.findWidgetsByPageId(pages[i]._id);
-                for(var j = 0;j<widgets.length;j++){
-                    WidgetService.deleteWidget(widgets[j]._id);
-                }
-                PageService.deletePage(pages[i]._id);
-            }
             WebsiteService.deleteWebsite(vm.websiteId)
                 .success(function(){
                     $location.url("/user/" + vm.userId + "/website");

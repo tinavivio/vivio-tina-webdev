@@ -8,7 +8,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a ng-click="model.updateYoutube(model.width,model.url)" class="tv-icon-padding tv-text-black">
+                <a ng-click="model.updateYoutube(model.width,model.height,model.url,model.text,model.name)" class="tv-icon-padding tv-text-black">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
@@ -30,11 +30,11 @@
         <form>
             <div>
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name">
+                <input ng-model="model.name" type="text" class="form-control" id="name" placeholder="Name">
             </div>
             <div class="form-group">
                 <label for="text">Text</label>
-                <input type="text" class="form-control" id="text" placeholder="Text">
+                <input ng-model="model.text" type="text" class="form-control" id="text" placeholder="Text">
             </div>
             <div class="form-group">
                 <label for="url">URL</label>
@@ -43,6 +43,14 @@
             <div class="form-group">
                 <label for="width">Width</label>
                 <input ng-model="model.width" type="text" class="form-control" id="width" placeholder="100%">
+            </div>
+            <div class="form-group">
+                <label for="height">Height</label>
+                <input ng-model="model.height" type="text" class="form-control" id="height" placeholder="100%">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea ng-model="model.description" class="form-control" rows="5" id="description" placeholder="Description"></textarea>
             </div>
         <a class="btn btn-danger  btn-block"
            ng-click="model.deleteWidget()">Delete</a>

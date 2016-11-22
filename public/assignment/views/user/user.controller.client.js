@@ -50,8 +50,9 @@
     function ProfileController($location,$routeParams,UserService){
         var vm = this;
         vm.updateUser = updateUser;
+        vm.deleteUser = deleteUser;
         function init() {
-            var userId = parseInt($routeParams.uid);
+            var userId = $routeParams.uid;
             var promise = UserService.findUserById(userId);
             promise
                 .success(function(user){
@@ -60,6 +61,8 @@
                         vm.username = user.username;
                         vm.firstName = user.firstName;
                         vm.lastName = user.lastName;
+                        vm.email = user.email;
+                        vm.phone = user.phone;
                     }else{
                         $location.url("/login");
                     }
@@ -69,11 +72,20 @@
                 });
         }
         init();
-        function updateUser(firstName,lastName) {
-            var user = {"firstName": firstName,"lastName" : lastName};
+        function updateUser(firstName,lastName,email,phone) {
+            var user = {"firstName": firstName,"lastName" : lastName,"email" : email, "phone" : phone};
             UserService.updateUser(vm.userId, user)
                 .success(function(){
                     vm.notify = "User details have been changed successfully.";
+                })
+                .error(function(){
+
+                });
+        }
+        function deleteUser() {
+            UserService.deleteUser(vm.userId)
+                .success(function(){
+                    $location.url("/register");
                 })
                 .error(function(){
 

@@ -7,7 +7,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a ng-click="model.updateImage(model.width,model.url,model.name)" class="tv-icon-padding tv-text-black">
+                <a ng-click="model.updateImage(model.width,model.height,model.url,model.text,model.name)" class="tv-icon-padding tv-text-black">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="text">Text</label>
-                <input type="text" class="form-control" id="text" placeholder="Text">
+                <input ng-model="model.text" type="text" class="form-control" id="text" placeholder="Text">
             </div>
             <div class="form-group">
                 <label for="url">URL</label>
@@ -42,6 +42,14 @@
             <div class="form-group">
                 <label for="width">Width</label>
                 <input ng-model="model.width" type="text" class="form-control" id="width" placeholder="100%">
+            </div>
+            <div class="form-group">
+                <label for="height">Height</label>
+                <input ng-model="model.height" type="text" class="form-control" id="height" placeholder="100%">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea ng-model="model.description" class="form-control" rows="5" id="description" placeholder="Description"></textarea>
             </div>
             </form>
         <form action="/assignment/api/upload"  method="post" enctype="multipart/form-data">
@@ -54,6 +62,7 @@
             <input  name="userId" value="{{model.userId}}" style="display: none"/>
             <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
         </form>
+        <a class="btn btn-primary btn-block" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr">Search</a>
         <a class="btn btn-danger  btn-block"
            ng-click="model.deleteWidget()">Delete</a>
 

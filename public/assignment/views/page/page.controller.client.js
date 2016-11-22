@@ -8,8 +8,8 @@
     function PageListController($location,$routeParams,UserService,WebsiteService,PageService) {
         var vm = this;
         function init() {
-            var userId = parseInt($routeParams.uid);
-            var websiteId = parseInt($routeParams.wid);
+            var userId = $routeParams.uid;
+            var websiteId = $routeParams.wid;
             var promise = UserService.findUserById(userId);
             promise
                 .success(function(user){
@@ -23,7 +23,9 @@
                                     var promise2 = PageService.findPagesByWebsiteId(websiteId);
                                     promise2
                                         .success(function(pages){
-                                            vm.pages = pages;
+                                            if(pages!=='0'){
+                                                vm.pages = pages;
+                                            }
                                         })
                                         .error(function(){
 
@@ -49,8 +51,8 @@
         var vm = this;
         vm.createPage = createPage;
         function init() {
-            var userId = parseInt($routeParams.uid);
-            var websiteId = parseInt($routeParams.wid);
+            var userId = $routeParams.uid;
+            var websiteId = $routeParams.wid;
             var promise = UserService.findUserById(userId);
             promise
                 .success(function(user){
@@ -64,7 +66,9 @@
                                     var promise2 = PageService.findPagesByWebsiteId(websiteId);
                                     promise2
                                         .success(function(pages){
-                                            vm.pages = pages;
+                                            if(pages!=='0'){
+                                                vm.pages = pages;
+                                            }
                                         })
                                         .error(function(){
 
@@ -99,14 +103,14 @@
             }
         }
     }
-    function EditPageController($location,$routeParams,UserService,WebsiteService,PageService,WidgetService){
+    function EditPageController($location,$routeParams,UserService,WebsiteService,PageService){
         var vm = this;
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
         function init() {
-            var userId = parseInt($routeParams.uid);
-            var websiteId = parseInt($routeParams.wid);
-            var pageId = parseInt($routeParams.pid);
+            var userId = $routeParams.uid;
+            var websiteId = $routeParams.wid;
+            var pageId = $routeParams.pid;
             var promise = UserService.findUserById(userId);
             promise
                 .success(function(user){
@@ -120,7 +124,9 @@
                                     var promise2 = PageService.findPagesByWebsiteId(websiteId);
                                     promise2
                                         .success(function(pages){
-                                            vm.pages = pages;
+                                            if(pages!=='0'){
+                                                vm.pages = pages;
+                                            }
                                         })
                                         .error(function(){
 
@@ -131,6 +137,8 @@
                                             if (page !== '0'){
                                                 vm.pageId = pageId;
                                                 vm.name = page.name;
+                                                vm.title = page.title;
+                                                vm.description = page.description;
                                             }else{
                                                 $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
                                             }
@@ -154,11 +162,11 @@
                 });
         }
         init();
-        function updatePage(pageName) {
+        function updatePage(pageName,title,description) {
             if(pageName===null || pageName===undefined || pageName===""){
                 vm.error="Must provide page name!";
             }else {
-                var page = {"name": pageName};
+                var page = {"name": pageName,"title":title,"description":description};
                 PageService.updatePage(vm.pageId, page)
                     .success(function(){
                         $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
@@ -169,10 +177,6 @@
             }
         }
         function deletePage() {
-            var widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-            for(var i = 0;i<widgets.length;i++){
-                WidgetService.deleteWidget(widgets[i]._id);
-            }
             PageService.deletePage(vm.pageId)
                 .success(function(){
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");

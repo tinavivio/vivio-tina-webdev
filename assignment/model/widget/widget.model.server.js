@@ -17,6 +17,7 @@ module.exports=function(mongoose){
         updateWidget: updateWidget,
         deleteWidget: deleteWidget,
         uploadImage: uploadImage,
+        selectPhoto: selectPhoto,
         setModel : setModel
     };
 
@@ -30,6 +31,20 @@ module.exports=function(mongoose){
         var deferred = q.defer();
 
         widgetModel.update({_id: widgetId}, {$set: {name: name,url:url,width:width}}, function(err, retVal){
+            if (err) {
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(retVal);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function selectPhoto(widgetId,widget){
+        var deferred = q.defer();
+
+        widgetModel.update({_id: widgetId}, {$set: {url:widget.url}}, function(err, retVal){
             if (err) {
                 deferred.reject(err);
             }

@@ -4,6 +4,7 @@ module.exports = function(app,model) {
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
     app.post ('/assignment/api/upload', upload.single('myFile'), uploadImage);
+    app.put('/assignment/api/widget/:widgetId/flickr',selectPhoto);
     app.put ('/assignment/api/page/:pageId/widget',sortWidgets);
     app.get('/assignment/api/page/:pageId/widget', findAllWidgetsForPage);
     app.post('/assignment/api/page/:pageId/widget', createWidget);
@@ -60,6 +61,24 @@ module.exports = function(app,model) {
                 res.redirect("../#/");
             });
     }
+
+    function selectPhoto(req,res){
+        var widgetId = req.params.widgetId;
+        var widget = req.body;
+        model.widgetModel
+            .selectPhoto(widgetId,widget)
+            .then(function(retVal){
+                    if(retVal){
+                        res.sendStatus(200);
+                    }else{
+                        res.sendStatus(400);
+                    }
+                },
+                function(err){
+                    res.sendStatus(400).send(err);
+                });
+    }
+
     function deleteWidget(req,res){
         var widgetId = req.params.widgetId;
         model.widgetModel

@@ -10,13 +10,20 @@
             findWidgetById: findWidgetById,
             updateWidget : updateWidget,
             deleteWidget : deleteWidget,
-            sortWidgets : sortWidgets
+            sortWidgets : sortWidgets,
+            selectPhoto : selectPhoto
         };
         return api;
         function sortWidgets(pageId,start,end){
             var url = '/assignment/api/page/' + pageId + '/widget?initial=' + start + '&final=' + end;
             return $http.put(url);
         }
+
+        function selectPhoto(widgetId,widget){
+            var url = '/assignment/api/widget/' + widgetId + '/flickr';
+            return $http.put(url,widget);
+        }
+
         function createWidget(pageId,widget) {
             var url = '/assignment/api/page/' + pageId + '/widget';
             return $http.post(url,widget);

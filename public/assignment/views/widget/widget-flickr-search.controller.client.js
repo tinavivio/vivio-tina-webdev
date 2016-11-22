@@ -79,7 +79,7 @@
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
             WidgetService
-                .updateWidget(vm.widgetId, {url: url})
+                .selectPhoto(vm.widgetId, {url: url})
                     .success(function(){
                         $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
                     })

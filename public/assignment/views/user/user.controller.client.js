@@ -18,7 +18,7 @@
                         if (user !== '0') {
                             $location.url("/user/" + user._id);
                         } else {
-                        vm.error = "Unable to login! User not recognized.";
+                            vm.error = "Unable to login! User not recognized.";
                         }
                     })
                     .error(function(){

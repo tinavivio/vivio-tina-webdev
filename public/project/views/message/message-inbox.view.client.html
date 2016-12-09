@@ -1,0 +1,41 @@
+<nav class="navbar navbar-fixed-top tv-blue-navbar">
+    <div class="container-fluid row">
+
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+            </a>
+        </div>
+        <a class="navbar-brand tv-text-white tv-text-bold" href="#/user/{{model.userId}}/message/inbox">
+            Mail Inbox
+        </a>
+    </div>
+    </div>
+</nav>
+
+
+<div class="container tv-container-padding">
+    <a class="btn btn-warning"
+       href="#/user/{{model.userId}}/message/outbox">Switch To Outbox</a>
+    <div class="tv-large-margin-top" ng-repeat="message in model.receivedMessages">
+        <div><a href="#/user/{{model.userId}}/message/{{message._id}}">{{message.subject}}</a>
+            <div>Received from {{message._from}} on {{model.formatDate(message.dateCreated)}}</div></div>
+    </div>
+</div>
+
+<nav class="navbar tv-blue-navbar navbar-fixed-bottom">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </a>
+        </div>
+        <div class="pull-right navbar-text">
+
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-icon-padding tv-text-white">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>

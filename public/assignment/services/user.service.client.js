@@ -11,7 +11,7 @@
             findUserByCredentials : findUserByCredentials,
             updateUser : updateUser,
             deleteUser : deleteUser
-    };
+        };
         return api;
         function createUser(user) {
             return $http.post('/assignment/api/user', user);

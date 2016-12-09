@@ -41,26 +41,26 @@ module.exports = function(app,model) {
         model.userModel
             .findUserByUsername(user.username)
             .then(function(retVal) {
-                if (retVal) {
-                    res.sendStatus(400).send("User already created!");
-                } else {
-                    model.userModel
-                        .createUser(user)
-                        .then(function (retVal) {
-                                if (retVal) {
-                                    res.send(retVal);
-                                } else {
-                                    res.send('0');
-                                }
-                            },
-                            function (err) {
-                                res.sendStatus(400).send(err);
-                            });
-                }
-            },
-            function(err){
-                res.sendStatus(400).send(err);
-            });
+                    if (retVal) {
+                        res.sendStatus(400).send("User already created!");
+                    } else {
+                        model.userModel
+                            .createUser(user)
+                            .then(function (retVal) {
+                                    if (retVal) {
+                                        res.send(retVal);
+                                    } else {
+                                        res.send('0');
+                                    }
+                                },
+                                function (err) {
+                                    res.sendStatus(400).send(err);
+                                });
+                    }
+                },
+                function(err){
+                    res.sendStatus(400).send(err);
+                });
     }
 
     function findUser(req, res){
@@ -82,7 +82,7 @@ module.exports = function(app,model) {
                     }else{
                         res.send('0');
                     }
-            },
+                },
                 function(err){
                     res.sendStatus(400).send(err);
                 }

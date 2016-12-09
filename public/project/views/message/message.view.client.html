@@ -1,0 +1,45 @@
+<nav class="navbar navbar-fixed-top tv-blue-navbar">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+            </a>
+        </div>
+
+        <a class="tv-text-white navbar-brand tv-header-padding tv-text-bold" href="#/user/{{model.userId}}">
+            Message
+        </a>
+
+
+    </div>
+</nav>
+
+
+<div class="container tv-container-padding">
+    <h4>Subject: {{model.subject}}</h4>
+    <h4>To: {{model.to}}</h4>
+    <h4>From: {{model.from}}</h4>
+    <p class="tv-margin-bottom">{{model.text}}</p>
+    <a ng-show="model.userId!==model.fromId" class="btn btn-warning btn-block"
+       href="#/user/{{model.userId}}/match/{{model.fromId}}/message/new">Reply to Message</a>
+    <a class="btn btn-block btn-danger"
+       ng-click="model.deleteMessage()">Delete Message</a>
+
+</div>
+
+<nav class="navbar navbar-fixed-bottom tv-blue-navbar">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </a>
+        </div>
+        <div class="pull-right navbar-text">
+
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+
+    </div>
+</nav>

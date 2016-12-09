@@ -1,0 +1,48 @@
+<div class="container">
+    <div ng-show="register.error" class="alert alert-danger" role="alert">
+        {{register.error}}
+    </div>
+    <h1>Register</h1>
+    <form name="registerForm">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input id="firstName" ng-model="register.user.firstName" type="text"
+                   class="form-control"
+                   placeholder="Tina"/></div>
+        <div class="form-group"><label for="lastName">Last Name</label><input id="lastName" ng-model="register.user.lastName" type="text"
+                                       class="form-control"
+                                       placeholder="Vivio"/></div>
+        <div class="form-group"><label for="age">Age</label><input ng-model="register.user.age" type="number" class="form-control" id="age"></div>
+        <div class="form-group"><label for="location">Location</label><input id="location" ng-model="register.user.location" type="text"
+                                                                              class="form-control"
+                                                                              placeholder="Seattle, WA"/></div>
+        <div class="form-group"><label for="username">Username</label><input id="username" name="username" ng-model="register.user.username" type="text"
+                                       class="form-control"
+                                       placeholder="tvivio"/></div>
+        <div class="form-group"><label for="password">Password</label><input id="password" name="password" ng-model="register.user.password" type="password"
+                                       class="form-control"
+                                       placeholder="abc123"/></div>
+        <div class="form-group"><label for="verifyPassword">Verify Password</label><input id="verifyPassword" name="verifyPassword" ng-model="register.user.verifyPassword" type="password"
+                                       class="form-control"
+                                       placeholder="abc123"/></div>
+        <div class="form-group">
+            <label for="gender">Gender</label><br>
+        <select id="gender" class="form-control" name="gender" ng-model="register.user.gender">
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+        </select><br>
+            </div>
+        <div class="form-group">
+            <label for="orientation">Orientation</label><br>
+            <select class="form-control" id="orientation" name="orientation" ng-model="register.user.orientation">
+                <option value="STRAIGHT">Straight</option>
+                <option value="GAY">Gay</option>
+                <option value="BISEXUAL">Bisexual</option>
+            </select><br>
+        </div>
+    </form>
+    <a class="btn btn-primary btn-block"
+       ng-click="register.createUser(register.user)">Register</a>
+    <a class="btn btn-danger  btn-block"
+       href="#/login">Cancel</a>
+</div>

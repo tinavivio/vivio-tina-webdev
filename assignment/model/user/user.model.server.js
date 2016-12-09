@@ -1,6 +1,6 @@
 "use strict"
 /*var users = require("./user.mock.json");
-var guid = require("guid");*/
+ var guid = require("guid");*/
 
 var q = require("q");
 
@@ -58,13 +58,13 @@ module.exports=function(mongoose){
         var deferred = q.defer();
 
         userModel.update({_id: userId},{$set: {firstName : user.firstName, lastName: user.lastName, email: user.email,phone:user.phone}}, function(err, retVal){
-        if (err) {
-            deferred.reject(err);
-        }
-        else{
-            deferred.resolve(retVal);
-        }
-    });
+            if (err) {
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(retVal);
+            }
+        });
         return deferred.promise;
     }
 

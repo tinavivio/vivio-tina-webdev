@@ -261,7 +261,9 @@
         }
         init();
         function updateHeader(size,text,name,description) {
-            if(text===null || text===undefined || text===""){
+            if(name===null || name===undefined || name==="") {
+                vm.error = "Must provide widget name!";
+            }else if(text===null || text===undefined || text===""){
                 vm.error="Must provide header text!";
             } else if(size === null || size === undefined || size === "" || parseInt(size) < 1 || parseInt(size) > 6){
                 vm.error="Header size must be between 1 and 6!";
@@ -280,7 +282,9 @@
             var promise = WidgetService.findWidgetById(vm.widgetId);
             promise
                 .success(function(widget) {
-                    if ((url === null || url === undefined || url === "") && (widget.url === null || widget.url === undefined || widget.url === "")) {
+                    if(name===null || name===undefined || name==="") {
+                        vm.error = "Must provide widget name!";
+                    }else if ((url === null || url === undefined || url === "") && (widget.url === null || widget.url === undefined || widget.url === "")) {
                         vm.error = "Must provide image link!";
                     } else if (width === null || width === undefined || width === "" || parseInt(width) < 1 || parseInt(width) > 100) {
                         vm.error = "Image width must be between 1 and 100!";
@@ -305,7 +309,9 @@
                 });
         }
         function updateYoutube(width,height,url,text,name,description) {
-            if(url===null || url===undefined || url===""){
+            if(name===null || name===undefined || name==="") {
+                vm.error = "Must provide widget name!";
+            }else if(url===null || url===undefined || url===""){
                 vm.error="Must provide Youtube link!";
             }else if (width === null || width === undefined || width === "" || parseInt(width) < 1 || parseInt(width) > 100) {
                 vm.error="Video width must be between 1 and 100!";
@@ -329,7 +335,9 @@
             }
         }
         function updateText(rows,text,placeholder,formatted, name,description) {
-            if(text===null || text===undefined || text===""){
+            if(name===null || name===undefined || name==="") {
+                vm.error = "Must provide widget name!";
+            }else if(text===null || text===undefined || text===""){
                 vm.error="Must provide text!";
             } else if(rows === null || rows === undefined || rows === "" || parseInt(rows) < 1 || parseInt(rows) > 20){
                 vm.error="Number of rows must be between 1 and 20!";
@@ -345,7 +353,9 @@
             }
         }
         function updateHtml(text,name,description) {
-            if(text===null || text===undefined || text===""){
+            if(name===null || name===undefined || name==="") {
+                vm.error = "Must provide widget name!";
+            }else if(text===null || text===undefined || text===""){
                 vm.error="Must provide text!";
             }else {
                 var html = {"text": text,"name":name,"description":description};

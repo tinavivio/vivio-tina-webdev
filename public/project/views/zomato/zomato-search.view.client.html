@@ -1,0 +1,51 @@
+<nav class="navbar navbar-fixed-top tv-blue-navbar">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/match/{{model.matchId}}" class="navbar-link tv-text-white tv-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+            </a>
+        </div>
+
+        <a class="tv-text-white navbar-brand tv-header-padding tv-text-bold" href="#/user/{{model.userId}}">
+            Restaurant Search
+        </a>
+
+
+    </div>
+</nav>
+
+<div class="container tv-container-padding">
+    <h1>Find a burrito spot near you!</h1>
+    <div class="input-group">
+        <input ng-model="searchText" type="text" class="form-control" placeholder="Enter location here">
+        <span class="input-group-btn">
+        <a ng-click="model.searchRestaurants(searchText)" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+    <div class="tv-large-margin-top" ng-show="model.restaurants">
+        <div ng-repeat="restaurant in model.restaurants">
+                <a href="{{restaurant.restaurant.url}}">{{restaurant.restaurant.name}}, {{restaurant.restaurant.location.address}}</a>
+            <img width=30% class="img-responsive" ng-src="{{restaurant.restaurant.thumb}}"/>
+            </div>
+        </div></div>
+</div>
+
+
+<nav class="navbar navbar-fixed-bottom tv-blue-navbar">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </a>
+        </div>
+        <div class="pull-right navbar-text">
+
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+
+    </div>
+</nav>

@@ -1,0 +1,52 @@
+<nav class="navbar navbar-fixed-top tv-blue-navbar">
+    <div class="container-fluid row">
+
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/match/{{model.matchId}}" class="navbar-link tv-text-white tv-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+            </a>
+        </div>
+        <a class="navbar-brand tv-text-white tv-text-bold" href="#/user/{{model.userId}}/match/{{model.matchId}}/message/new">
+            New Message
+        </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container tv-container-padding">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <form name="newMessageForm">
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input name="subject" id="subject" ng-model="model.message.subject" type="text" class="form-control" placeholder="Let's Meet!">
+                </div>
+            <div class="form-group">
+                <label for="text">Text</label>
+                <textarea ng-model="model.message.text" type="text" rows="5" class="form-control" id="text" placeholder="I would love to share a burrito with you! When are you free?"></textarea>
+            </div>
+        </form>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.createMessage(model.message)">Send</a>
+    </div>
+</div>
+
+<nav class="navbar tv-blue-navbar navbar-fixed-bottom">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </a>
+        </div>
+        <div class="pull-right navbar-text">
+
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-icon-padding tv-text-white">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>

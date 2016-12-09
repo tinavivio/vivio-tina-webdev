@@ -1,0 +1,115 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 36px;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.tv-container-padding {
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+
+.tv-blue-navbar{
+    background-color: #337ab7;
+}
+
+.tv-text-white{
+    color: #fff;
+}
+
+.tv-text-black{
+    color: #000000;
+}
+
+.tv-text-bold{
+    font-weight: bold;
+}
+
+.tv-icon-padding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tv-header-padding{
+    padding-left: 5%;
+}
+
+.tv-full-width{
+    width: 100%;
+}
+
+.tv-widget-list-item{
+    padding-bottom: 20px;
+}
+
+.tv-v-divider{
+    border-right: 1px solid #808080;
+    height: 100%;
+}
+
+.tv-widget-heading{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.tv-widget-paragraph{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.tv-height{
+    height: 100%;
+    min-height: 100%;
+}
+
+.tv-relative-position{
+    position: relative;
+}
+.tv-absolute-position{
+    position: absolute;
+}
+.tv-widget-list-icons{
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    background-color: white;
+}
+.tv-zero-right-padding{
+    padding-right: 0px;
+}
+
+.tv-margin-top{
+    margin-top: 5px;
+}
+
+.tv-large-margin-top{
+    margin-top: 15px;
+}
+
+.tv-margin-bottom{
+    margin-bottom: 5px;
+}
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+input.ng-invalid {
+    background-color: pink;
+}

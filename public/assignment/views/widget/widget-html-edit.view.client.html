@@ -27,11 +27,11 @@
         {{model.error}}
     </div>
 
-    <form>
+    <form name="editHtmlForm">
         <div>
             <label for="name">Name</label>
-            <input ng-model="model.name" type="text" class="form-control" id="name" placeholder="Name">
-        </div>
+            <input ng-invalid name="name" ng-model="model.name" required type="text" class="form-control" id="name" placeholder="Name">
+            <span ng-show="editHtmlForm.name.$invalid">Required!</span></div>
             <div ng-model="model.text" text-angular
                    ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
         ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],

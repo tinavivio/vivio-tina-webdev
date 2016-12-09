@@ -46,11 +46,11 @@
         <div ng-show="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
         </div>
-        <form>
+        <form name="newWebsiteForm">
             <div>
                 <label for="name">Name</label>
-                <input ng-model="model.website.name" type="text" class="form-control" id="name" placeholder="Name">
-            </div>
+                <input ng-invalid name="name" ng-model="model.website.name" required type="text" class="form-control" id="name" placeholder="Name">
+                <span ng-show="newWebsiteForm.name.$invalid">Required!</span></div>
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea ng-model="model.website.description" class="form-control" rows="5" id="description" placeholder="Description"></textarea>

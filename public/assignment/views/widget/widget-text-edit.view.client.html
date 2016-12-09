@@ -27,11 +27,11 @@
         {{model.error}}
     </div>
 
-    <form>
+    <form name="editTextForm">
         <div>
             <label for="name">Name</label>
-            <input ng-model="model.name" type="text" class="form-control" id="name" placeholder="Name">
-        </div>
+            <input ng-invalid name="name" ng-model="model.name" required type="text" class="form-control" id="name" placeholder="Name">
+            <span ng-show="editTextForm.name.$invalid">Required!</span></div>
         <div class="form-group">
             <label for="text">Text</label>
             <input ng-model="model.text" type="text" class="form-control" id="text" placeholder="4720 Guenza Road, Santa Rosa, CA 95404">

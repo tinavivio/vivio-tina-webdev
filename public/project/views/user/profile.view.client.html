@@ -1,0 +1,86 @@
+<nav class="navbar navbar-fixed-top tv-blue-navbar">
+    <div class="container-fluid row">
+
+        <div class="navbar-text pull-right">
+            <a ng-click="model.updateUser(model.firstName,model.lastName,model.email,model.phone,model.about,model.photoUrl,model.location)" class="navbar-link tv-text-white tv-icon-padding">
+          <span class="glyphicon glyphicon-ok">
+          </span>
+            </a>
+        </div>
+        <a class="tv-text-white navbar-brand tv-header-padding tv-text-bold" href="#/user/{{model.userId}}">
+            Profile
+        </a>
+
+
+    </div>
+</nav>
+
+
+<div class="container tv-container-padding">
+    <div ng-show="model.notify" class="alert alert-success" role="alert">
+        {{model.notify}}
+    </div>
+    <h2>{{model.username}}, {{model.age}}, {{model.location}}</h2>
+    <img width=30% class="img-responsive tv-margin-bottom" ng-src="{{model.photoUrl}}"/>
+    <form>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input ng-model="model.email" type="email" class="form-control" id="email" placeholder="tina@aol.com">
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input ng-model="model.firstName" type="text" class="form-control" id="first-name" placeholder="Tina">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input ng-model="model.lastName" type="text" class="form-control" id="last-name" placeholder="Vivio">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input ng-model="model.phone" type="text" class="form-control" id="phone" placeholder="123-456-7890">
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input ng-model="model.location" type="text" class="form-control" id="location" placeholder="Seattle, WA">
+        </div>
+        <div class="form-group">
+            <label for="about">About Me</label>
+            <textarea ng-model="model.about" class="form-control" rows="5" id="about" placeholder="I'm just a small town girl living in a lonely world."></textarea>
+        </div>
+    </form>
+    <form action="/project/api/upload"  method="post" enctype="multipart/form-data">
+        <label for="file">Select Profile Picture</label>
+        <input  name="myFile"   type="file" class="form-control" id="file"/>
+        <input  name="userId" value="{{model.userId}}" style="display: none"/>
+        <button type="submit" class="btn btn-primary btn-block">Upload Profile Picture</button>
+    </form>
+
+    <a ng-show="!model.burrito" class="btn btn-primary btn-block tv-margin-top"
+       href="#/user/{{model.userId}}/burrito/new">Take Burrito Assessment</a>
+    <a ng-show="model.burrito" class="btn btn-primary btn-block tv-margin-top"
+       href="#/user/{{model.userId}}/burrito/edit">Edit Burrito Preferences</a>
+    <a ng-show="model.burrito && !model.matches" class="btn btn-primary  btn-block tv-margin-top"
+       ng-click="model.calculateMatches()">Find My Burrito Soulmates</a>
+    <a ng-show="model.burrito && model.matches" class="btn btn-success btn-block tv-margin-top"
+       href="#/user/{{model.userId}}/match">View My Burrito Soulmates</a>
+    <a ng-show="model.burrito && model.matches" class="btn btn-danger  btn-block"
+       ng-click="model.calculateMatches()">I Haven't Found My Burrito Soulmate! Please find me more!</a>
+    <a class="btn btn-warning btn-block"
+       ng-click="model.deleteUser()">Unregister</a>
+</div>
+
+<nav class="navbar navbar-fixed-bottom tv-blue-navbar">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </a>
+        </div>
+        <div class="pull-right navbar-text">
+
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+
+    </div>
+</nav>

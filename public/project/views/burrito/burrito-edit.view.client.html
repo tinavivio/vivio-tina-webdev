@@ -1,0 +1,105 @@
+<nav class="navbar tv-blue-navbar navbar-fixed-top">
+    <div class="container-fluid row">
+
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+            </a>
+        </div>
+        <a class="navbar-brand tv-text-white tv-text-bold" href="#/user/{{model.userId}}/burrito/edit">
+            Edit Burrito Preferences
+        </a>
+
+
+    </div>
+</nav>
+
+<div class="container tv-container-padding">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <form name="editBurritoForm">
+        <div class="form-group">
+            <label for="tortilla">Tortilla</label><br>
+            <select id="tortilla" class="form-control" name="tortilla" ng-model="model.tortilla">
+                <option value="FLOUR">Flour</option>
+                <option value="CORN">Corn</option>
+                <option value="WHOLE WHEAT">Whole Wheat</option>
+            </select><br>
+        </div>
+        <div class="form-group">
+            <label for="rice">Rice</label><br>
+            <select class="form-control" id="rice" name="rice" ng-model="model.rice">
+                <option value="WHITE">White</option>
+                <option value="BROWN">Brown</option>
+                <option value="CILANTRO LIME">Cilantro Lime</option>
+            </select><br>
+        </div>
+        <div class="form-group">
+            <label for="beans">Beans</label><br>
+            <select class="form-control" id="beans" name="beans" ng-model="model.beans">
+                <option value="BLACK">Black</option>
+                <option value="PINTO">Pinto</option>
+                <option value="REFRIED">Refried</option>
+            </select><br>
+        </div>
+        <div class="form-group">
+            <label for="meat">Meat</label><br>
+            <select class="form-control" id="meat" name="meat" ng-model="model.meat">
+                <option value="VEGGIE">Veggie</option>
+                <option value="CHICKEN">Chicken</option>
+                <option value="CARNE ASADA">Carne Asada</option>
+                <option value="AL PASTOR">Al Pastor</option>
+                <option value="CARNITAS">Carnitas</option>
+                <option value="CHILE VERDE">Chile Verde</option>
+                <option value="CHORIZO">Chorizo</option>
+            </select><br>
+        </div>
+        <div class="form-group">
+            <label for="salsa">Salsa</label><br>
+            <select class="form-control" id="salsa" name="salsa" ng-model="model.salsa">
+                <option value="MILD">Mild</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HOT">Hot</option>
+                <option value="EXTRA HOT">Extra Hot</option>
+            </select><br>
+        </div>
+        <div class="form-group">
+            <label for="cheese">Cheese?</label>
+            <input ng-model="model.cheese" type="checkbox" id="cheese">
+        </div>
+        <div class="form-group">
+            <label for="sourCream">Sour Cream?</label>
+            <input ng-model="model.sourCream" type="checkbox" id="sourCream">
+        </div>
+        <div class="form-group">
+            <label for="lettuce">Lettuce?</label>
+            <input ng-model="model.lettuce" type="checkbox" id="lettuce">
+        </div>
+        <div class="form-group">
+            <label for="guacamole">Pay extra for guac?</label>
+            <input ng-model="model.guacamole" type="checkbox" id="guacamole">
+        </div>
+    </form>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.updateBurrito(model.tortilla,model.rice,model.beans,model.meat,model.salsa,model.lettuce,model.cheese,model.sourCream,model.guacamole)">Submit Changes</a>
+</div>
+
+</div>
+
+<nav class="navbar tv-blue-navbar navbar-fixed-bottom">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </a>
+        </div>
+        <div class="pull-right navbar-text">
+
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-icon-padding tv-text-white">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>

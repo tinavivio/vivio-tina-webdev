@@ -1,0 +1,46 @@
+<nav class="navbar navbar-fixed-top tv-blue-navbar">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+            </a>
+        </div>
+
+        <a class="tv-text-white navbar-brand tv-header-padding tv-text-bold" href="#/user/{{model.userId}}">
+            {{model.firstName}}'s Profile
+        </a>
+
+
+    </div>
+</nav>
+
+
+<div class="container tv-container-padding">
+    <h2>{{model.username}}, {{model.age}}, {{model.location}}</h2>
+    <img width=30% class="img-responsive tv-margin-bottom" ng-src="{{model.photoUrl}}"/>
+    <p>{{model.about}}</p>
+
+    <a class="btn btn-primary btn-block tv-margin-top"
+       href="#/user/{{model.userId}}/match/{{model.matchId}}/message/new">Message Match</a>
+    <a class="btn btn-primary btn-block tv-margin-top"
+       href="#/user/{{model.userId}}/match/{{model.matchId}}/zomato">Plan Your First Date</a>
+    <a class="btn btn-block btn-danger tv-margin-top"
+       ng-click="model.deleteMatch()">Delete Match</a>
+</div>
+
+<nav class="navbar navbar-fixed-bottom tv-blue-navbar">
+    <div class="container-fluid row">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </a>
+        </div>
+        <div class="pull-right navbar-text">
+
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+
+    </div>
+</nav>

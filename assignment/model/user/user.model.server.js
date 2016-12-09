@@ -18,6 +18,7 @@ module.exports=function(mongoose){
         deleteUser: deleteUser,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
+        findUserByFacebookId: findUserByFacebookId,
         setModel : setModel
     };
     return api;
@@ -72,6 +73,20 @@ module.exports=function(mongoose){
         var deferred = q.defer();
 
         userModel.remove({_id: userId}, function(err, retVal){
+            if (err) {
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(retVal);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findUserByFacebookId(facebookId) {
+        var deferred = q.defer();
+
+        userModel.findOne({'facebook.id': facebookId}, function(err, retVal){
             if (err) {
                 deferred.reject(err);
             }

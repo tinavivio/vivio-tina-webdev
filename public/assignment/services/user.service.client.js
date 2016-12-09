@@ -10,9 +10,25 @@
             findUserByUsername: findUserByUsername,
             findUserByCredentials : findUserByCredentials,
             updateUser : updateUser,
-            deleteUser : deleteUser
+            deleteUser : deleteUser,
+            login : login,
+            logout : logout,
+            register : register
         };
         return api;
+
+        function login(user) {
+            return $http.post("/assignment/api/login", user);
+        }
+
+        function logout(user) {
+            return $http.post("/assignment/api/logout");
+        }
+
+        function register(user) {
+            return $http.post("/assignment/api/register", user);
+        }
+
         function createUser(user) {
             return $http.post('/assignment/api/user', user);
         }

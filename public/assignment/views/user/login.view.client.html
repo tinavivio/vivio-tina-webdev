@@ -3,12 +3,16 @@
         {{login.error}}
     </div>
     <h1>Login</h1>
-    <input ng-model="login.user.username" type="text"
+    <form name="loginForm">
+    <input required ng-invalid name="username" ng-model="login.user.username" type="text"
            class="form-control"
-           placeholder="username"/>
-    <input ng-model="login.user.password" type="password"
+           placeholder="username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+    <span ng-show="loginForm.username.$invalid">Required!</span>
+    <input required ng-invalid name="password" ng-model="login.user.password" type="password"
            class="form-control"
-           placeholder="password"/>
+           placeholder="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+    <span ng-show="loginForm.password.$invalid">Required!</span>
+        </form>
     <a class="btn btn-primary btn-block"
        ng-click="login.login()">Login</a>
     <a class="btn btn-success btn-block"

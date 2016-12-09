@@ -3,23 +3,28 @@
         {{register.error}}
     </div>
     <h1>Register</h1>
+    <form name="registerForm">
     <input ng-model="register.user.firstName" type="text"
            class="form-control"
            placeholder="first name"/>
     <input ng-model="register.user.lastName" type="text"
            class="form-control"
            placeholder="last name"/>
-    <input ng-model="register.user.username" type="text"
+    <input required ng-invalid name="username" ng-model="register.user.username" type="text"
            class="form-control"
            placeholder="username"/>
-    <input ng-model="register.user.password" type="password"
+        <span ng-show="registerForm.username.$invalid">Required!</span>
+    <input required ng-invalid name="password" ng-model="register.user.password" type="password"
            class="form-control"
            placeholder="password"/>
-    <input ng-model="register.user.verifyPassword" type="password"
+        <span ng-show="registerForm.password.$invalid">Required!</span>
+    <input required ng-invalid name="verifyPassword" ng-model="register.user.verifyPassword" type="password"
            class="form-control"
            placeholder="verify password"/>
+        <span ng-show="registerForm.verifyPassword.$invalid">Required!</span>
+        </form>
     <a class="btn btn-primary btn-block"
-       ng-click="register.createUser(register.user)">Register</a>
+       ng-click="register.register(register.user)">Register</a>
     <a class="btn btn-danger  btn-block"
        href="#/login">Cancel</a>
 </div>

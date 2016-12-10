@@ -163,14 +163,12 @@
                         vm.location = user.location;
                         vm.age = user.age;
                         vm.photoUrl = user.photoUrl;
-                        if(user.matches.length>0){
-                            vm.matches = user.matches;
-                        }
                         var promise1 = BurritoService.findBurritoByUserId(vm.userId);
                         promise1
                             .success(function(burrito){
                                 if(burrito !== '0'){
                                     vm.burrito = burrito;
+                                    vm.matches = user.matches;
                                 }
                             })
                             .error(function(){

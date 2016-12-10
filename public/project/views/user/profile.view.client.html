@@ -59,8 +59,6 @@
        href="#/user/{{model.userId}}/burrito/new">Take Burrito Assessment</a>
     <a ng-show="model.burrito" class="btn btn-primary btn-block tv-margin-top"
        href="#/user/{{model.userId}}/burrito/edit">Edit Burrito Preferences</a>
-    <a ng-show="model.burrito && !model.matches" class="btn btn-primary  btn-block tv-margin-top"
-       ng-click="model.calculateMatches()">Find My Burrito Soulmates</a>
     <a ng-show="model.burrito && model.matches" class="btn btn-success btn-block tv-margin-top"
        href="#/user/{{model.userId}}/match">View My Burrito Soulmates</a>
     <a ng-show="model.burrito && model.matches" class="btn btn-danger  btn-block"

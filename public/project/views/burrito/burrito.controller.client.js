@@ -33,7 +33,13 @@
             }else {
                 BurritoService.createBurritoForUser(vm.userId, burrito)
                     .success(function(){
-                        $location.url("/user/" + vm.userId);
+                        UserService.calculateMatches(vm.userId)
+                            .success(function(){
+                                $location.url("/user/" + vm.userId);
+                            })
+                            .error(function(){
+
+                            });
                     })
                     .error(function(){
 

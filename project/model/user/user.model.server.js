@@ -5,7 +5,7 @@ var q = require("q");
 module.exports=function(mongoose){
 
     var userSchema = require("./user.schema.server.js")();
-    var userModel = mongoose.model("userModel", userSchema);
+    //var userModel = mongoose.model("userModel", userSchema);
 
     var model = {};
 

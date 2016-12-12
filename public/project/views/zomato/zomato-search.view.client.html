@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top tv-blue-navbar">
+<nav class="navbar navbar-fixed-top tv-green-navbar">
     <div class="container-fluid row">
         <div class="navbar-text pull-left">
             <a href="#/user/{{model.userId}}/match/{{model.matchId}}" class="navbar-link tv-text-white tv-icon-padding">
@@ -6,7 +6,12 @@
           </span>
             </a>
         </div>
-
+        <div class="navbar-text pull-right">
+            <a ng-click="model.logout()" class="navbar-link tv-icon-padding tv-text-white">
+          <span class="glyphicon glyphicon-log-out">
+          </span>
+            </a>
+        </div>
         <a class="tv-text-white navbar-brand tv-header-padding tv-text-bold" href="#/user/{{model.userId}}">
             Restaurant Search
         </a>
@@ -26,7 +31,11 @@
     </span>
     </div>
     <div class="tv-large-margin-top" ng-show="model.restaurants">
-        <div ng-repeat="restaurant in model.restaurants">
+        <div class="tv-custom-padding" ng-repeat="restaurant in model.restaurants">
+            <div class="pull-right">
+                <a class="btn btn-primary btn-block"
+                   ng-click="model.suggestRestaurant(restaurant.restaurant.name,restaurant.restaurant.location.address)">Make a Date</a>
+            </div>
                 <a href="{{restaurant.restaurant.url}}">{{restaurant.restaurant.name}}, {{restaurant.restaurant.location.address}}</a>
             <img width=30% class="img-responsive" ng-src="{{restaurant.restaurant.thumb}}"/>
             </div>
@@ -34,7 +43,7 @@
 </div>
 
 
-<nav class="navbar navbar-fixed-bottom tv-blue-navbar">
+<nav class="navbar navbar-fixed-bottom tv-red-navbar">
     <div class="container-fluid row">
         <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
             <span class="glyphicon glyphicon-envelope"></span>

@@ -5,7 +5,7 @@ var q = require("q");
 module.exports=function(mongoose){
 
     var userSchema = require("./user.schema.server.js")();
-    //var userModel = mongoose.model("userModel", userSchema);
+    var userModel = mongoose.model("userModel", userSchema);
 
     var model = {};
 
@@ -21,12 +21,28 @@ module.exports=function(mongoose){
         deleteMatch: deleteMatch,
         clearMatches: clearMatches,
         uploadImage: uploadImage,
+        findUserByFacebookId: findUserByFacebookId,
+        findAllUsers: findAllUsers,
         setModel : setModel
     };
     return api;
 
     function setModel(_model){
         model = _model;
+    }
+
+    function findUserByFacebookId(facebookId) {
+        var deferred = q.defer();
+
+        userModel.findOne({'facebook.id': facebookId}, function(err, retVal){
+            if (err) {
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(retVal);
+            }
+        });
+        return deferred.promise;
     }
 
     function createUser (user) {
@@ -73,10 +89,24 @@ module.exports=function(mongoose){
         return deferred.promise;
     }
 
+    function findAllUsers(){
+        var deferred = q.defer();
+
+        userModel.find({}, function(err, retVal){
+            if (err) {
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(retVal);
+            }
+        });
+        return deferred.promise;
+    }
+
     function updateUser(userId, user) {
         var deferred = q.defer();
 
-        userModel.update({_id: userId},{$set: {firstName : user.firstName, lastName: user.lastName, email: user.email,about: user.about,phone:user.phone,photoUrl:user.photoUrl,location:user.location}}, function(err, retVal){
+        userModel.update({_id: userId},{$set: {age: user.age,firstName : user.firstName, lastName: user.lastName, email: user.email,about: user.about,phone:user.phone,photoUrl:user.photoUrl,location:user.location}}, function(err, retVal){
             if (err) {
                 deferred.reject(err);
             }

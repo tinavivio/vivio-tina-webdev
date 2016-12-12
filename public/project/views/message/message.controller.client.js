@@ -6,9 +6,10 @@
         .controller("MessageOutboxController",MessageOutboxController)
         .controller("MessageController",MessageController);
 
-    function NewMessageController($location,$routeParams,UserService,MessageService) {
+    function NewMessageController($location,$routeParams,$rootScope,UserService,MessageService) {
         var vm = this;
         vm.createMessage = createMessage;
+        vm.logout = logout;
         function init() {
             var userId = $routeParams.uid;
             var matchId = $routeParams.mid;
@@ -51,10 +52,20 @@
                     });
             }
         }
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    });
+        }
     }
-    function MessageInboxController($location,$routeParams,UserService,MessageService){
+    function MessageInboxController($location,$routeParams,$rootScope,UserService,MessageService){
         var vm = this;
         vm.formatDate = formatDate;
+        vm.logout = logout;
         function init() {
             var userId = $routeParams.uid;
             var promise = UserService.findUserById(userId);
@@ -89,10 +100,20 @@
             var formattedDate =  new Date(date);
             return formattedDate.toDateString();
         }
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    });
+        }
     }
-    function MessageOutboxController($location,$routeParams,UserService,MessageService){
+    function MessageOutboxController($location,$routeParams,$rootScope,UserService,MessageService){
         var vm = this;
         vm.formatDate = formatDate;
+        vm.logout = logout;
         function init() {
             var userId = $routeParams.uid;
             var promise = UserService.findUserById(userId);
@@ -127,11 +148,21 @@
             var formattedDate =  new Date(date);
             return formattedDate.toDateString();
         }
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    });
+        }
     }
 
-    function MessageController($location,$routeParams,UserService,MessageService){
+    function MessageController($location,$routeParams,$rootScope,UserService,MessageService){
         var vm = this;
         vm.deleteMessage = deleteMessage;
+        vm.logout = logout;
         function init() {
             var userId = $routeParams.uid;
             var messageId = $routeParams.msgid;
@@ -150,26 +181,8 @@
                                     vm.date = message.dateCreated;
                                     vm.toId = message._to;
                                     vm.fromId = message._from;
-                                    var promise3 = UserService.findUserById(message._from);
-                                    promise3
-                                        .success(function(user){
-                                            if(user!=='0'){
-                                                vm.from = user.username;
-                                                var promise4 = UserService.findUserById(message._to);
-                                                promise4
-                                                    .success(function(user){
-                                                        if(user!=='0'){
-                                                            vm.to = user.username;
-                                                        }
-                                                    })
-                                                    .error(function(){
-
-                                                    });
-                                            }
-                                        })
-                                        .error(function(){
-
-                                        });
+                                    vm.to = message.toUsername;
+                                    vm.from = message.fromUsername;
                                 }else{
                                     $location.url("/user/" + vm.userId + '/message/inbox');
                                 }
@@ -186,6 +199,15 @@
                 });
         }
         init();
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    });
+        }
         function deleteMessage(){
             MessageService.deleteMessage(vm.userId,vm.messageId)
                 .success(function(){

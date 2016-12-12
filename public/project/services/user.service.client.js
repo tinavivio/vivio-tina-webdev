@@ -11,9 +11,30 @@
             updateUser : updateUser,
             deleteUser : deleteUser,
             deleteMatch : deleteMatch,
-            calculateMatches : calculateMatches
+            calculateMatches : calculateMatches,
+            findAllUsers : findAllUsers,
+            login : login,
+            logout : logout,
+            register : register
         };
         return api;
+
+        function findAllUsers(){
+            return $http.get("/project/api/user");
+        }
+
+        function login(user) {
+            return $http.post("/project/api/login", user);
+        }
+
+        function logout() {
+            return $http.post("/project/api/logout");
+        }
+
+        function register(user) {
+            return $http.post("/project/api/register", user);
+        }
+
         function createUser(user) {
             return $http.post('/project/api/user', user);
         }

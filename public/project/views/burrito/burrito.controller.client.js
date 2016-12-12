@@ -4,9 +4,10 @@
         .controller("NewBurritoController", NewBurritoController)
         .controller("EditBurritoController",EditBurritoController);
 
-    function NewBurritoController($location,$routeParams,UserService,BurritoService) {
+    function NewBurritoController($location,$routeParams,$rootScope,UserService,BurritoService) {
         var vm = this;
         vm.createBurrito = createBurrito;
+        vm.logout = logout;
         function init() {
             var userId = $routeParams.uid;
             var promise = UserService.findUserById(userId);
@@ -23,6 +24,15 @@
                 });
         }
         init();
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    });
+        }
         function createBurrito(burrito) {
             if(burrito===undefined || burrito.tortilla === null || burrito.tortilla ===undefined || burrito.tortilla ==="" ||
                 burrito.beans === null || burrito.beans ===undefined || burrito.beans ==="" ||
@@ -47,9 +57,10 @@
             }
         }
     }
-    function EditBurritoController($location,$routeParams,UserService,BurritoService){
+    function EditBurritoController($location,$routeParams,$rootScope,UserService,BurritoService){
         var vm = this;
         vm.updateBurrito = updateBurrito;
+        vm.logout = logout;
         function init() {
             var userId = $routeParams.uid;
             var promise = UserService.findUserById(userId);
@@ -78,6 +89,15 @@
                 });
         }
         init();
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    });
+        }
         function updateBurrito(tortilla,rice,beans,meat,salsa,lettuce,cheese,sourCream,guacamole) {
             if(tortilla === null || tortilla ===undefined || tortilla ==="" ||
                 beans === null || beans ===undefined || beans ==="" ||

@@ -1,4 +1,9 @@
 <div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Burrito Matchmaker</h1>
+            <p class="tv-custom-width">We'll find you matches based on what's really important: burrito compatibility! Meet and fall in love the proven way...through food.</p>
+        </div></div>
     <div ng-show="login.error" class="alert alert-danger" role="alert">
         {{login.error}}
     </div>
@@ -15,6 +20,10 @@
     </form>
     <a class="btn btn-primary btn-block"
        ng-click="login.login()">Login</a>
+    <a href="/project/auth/facebook" class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
+    </a>
     <a class="btn btn-success btn-block"
        href="#/register">Register</a>
 </div>

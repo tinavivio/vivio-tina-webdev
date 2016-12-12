@@ -6,8 +6,29 @@ body {
     padding-top: 36px;
 }
 
+.jumbotron {
+    position: relative;
+    background: #ffffff url('https://www.deltaco.com/files/menu/item/machocomboburrito.png') center center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.tv-custom-width{
+    width: 65%;
+}
+
 a:hover{
     text-decoration: none;
+}
+
+.tv-green-navbar-text:hover{
+    color: #90ee90;
+}
+
+.tv-red-navbar-text:hover{
+    color: #ffb6c1;
 }
 
 .tv-container-padding {
@@ -15,8 +36,17 @@ a:hover{
     padding-bottom: 10%;
 }
 
-.tv-blue-navbar{
-    background-color: #337ab7;
+.tv-custom-padding {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.tv-green-navbar{
+    background-color: #006400;
+}
+
+.tv-red-navbar{
+    background-color: #ff0000;
 }
 
 .tv-text-white{

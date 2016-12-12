@@ -1,13 +1,19 @@
-<nav class="navbar tv-blue-navbar navbar-fixed-top">
+<nav class="navbar tv-green-navbar navbar-fixed-top">
     <div class="container-fluid row">
 
         <div class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-green-navbar-text tv-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
             </a>
         </div>
-        <a class="navbar-brand tv-text-white tv-text-bold" href="#/user/{{model.userId}}/burrito/edit">
+        <div class="navbar-text pull-right">
+            <a ng-click="model.logout()" class="navbar-link tv-icon-padding tv-green-navbar-text tv-text-white">
+          <span class="glyphicon glyphicon-log-out">
+          </span>
+            </a>
+        </div>
+        <a class="navbar-brand tv-text-white tv-green-navbar-text tv-text-bold" href="#/user/{{model.userId}}/burrito/edit">
             Edit Burrito Preferences
         </a>
 
@@ -88,15 +94,15 @@
 
 </div>
 
-<nav class="navbar tv-blue-navbar navbar-fixed-bottom">
+<nav class="navbar tv-red-navbar navbar-fixed-bottom">
     <div class="container-fluid row">
-        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-red-navbar-text tv-icon-padding">
             <span class="glyphicon glyphicon-envelope"></span>
         </a>
         </div>
         <div class="pull-right navbar-text">
 
-            <a href="#/user/{{model.userId}}" class="navbar-link tv-icon-padding tv-text-white">
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-red-navbar-text tv-icon-padding tv-text-white">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
 

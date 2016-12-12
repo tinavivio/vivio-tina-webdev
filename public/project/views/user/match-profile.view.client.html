@@ -1,13 +1,18 @@
-<nav class="navbar navbar-fixed-top tv-blue-navbar">
+<nav class="navbar navbar-fixed-top tv-green-navbar">
     <div class="container-fluid row">
         <div class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-green-navbar-text tv-text-white tv-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
             </a>
         </div>
-
-        <a class="tv-text-white navbar-brand tv-header-padding tv-text-bold" href="#/user/{{model.userId}}">
+        <div class="navbar-text pull-right">
+            <a ng-click="model.logout()" class="navbar-link tv-green-navbar-text tv-icon-padding tv-text-white">
+          <span class="glyphicon glyphicon-log-out">
+          </span>
+            </a>
+        </div>
+        <a class="tv-text-white navbar-brand tv-green-navbar-text tv-header-padding tv-text-bold" href="#/user/{{model.userId}}">
             {{model.firstName}}'s Profile
         </a>
 
@@ -18,7 +23,7 @@
 
 <div class="container tv-container-padding">
     <h2>{{model.username}}, {{model.age}}, {{model.location}}</h2>
-    <img width=30% class="img-responsive tv-margin-bottom" ng-src="{{model.photoUrl}}"/>
+    <img width=30% class="img-responsive img-circle tv-margin-bottom" ng-src="{{model.photoUrl}}"/>
     <p>{{model.about}}</p>
 
     <a class="btn btn-primary btn-block tv-margin-top"
@@ -29,15 +34,15 @@
        ng-click="model.deleteMatch()">Delete Match</a>
 </div>
 
-<nav class="navbar navbar-fixed-bottom tv-blue-navbar">
+<nav class="navbar navbar-fixed-bottom tv-red-navbar">
     <div class="container-fluid row">
-        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-red-navbar-text tv-text-white tv-icon-padding">
             <span class="glyphicon glyphicon-envelope"></span>
         </a>
         </div>
         <div class="pull-right navbar-text">
 
-            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-red-navbar-text tv-text-white tv-icon-padding">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

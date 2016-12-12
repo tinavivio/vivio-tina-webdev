@@ -3,9 +3,11 @@
         .module("BurritoMatchMaker")
         .controller("ZomatoSearchController", ZomatoSearchController);
 
-    function ZomatoSearchController($location,$routeParams,UserService,ZomatoService) {
+    function ZomatoSearchController($location,$routeParams,$rootScope,UserService,ZomatoService,MessageService) {
         var vm = this;
         vm.searchRestaurants = searchRestaurants;
+        vm.suggestRestaurant = suggestRestaurant;
+        vm.logout = logout;
         function init() {
             var userId = $routeParams.uid;
             var matchId = $routeParams.mid;
@@ -35,7 +37,15 @@
                 });
         }
         init();
-
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    });
+        }
         function searchRestaurants(searchTerm) {
             ZomatoService
                 .findLocationIdByLocationName(searchTerm)
@@ -47,18 +57,17 @@
                         })
                 });
         }
+    function suggestRestaurant(name,location){
+        var text = "Hi! I would love to meet up for good Mexican food. I found a cool restaurant I'd like to try! Its name is " + name + " and it's located at " + location + ". When are you free to grab a bite and discuss our mutual love of burritos?";
+        var message = {"subject":"Let's make a date!","text":text};
+        MessageService.createMessage(vm.userId, vm.matchId,message)
+            .success(function(){
+                $location.url("/user/" + vm.userId +'/message/outbox');
+            })
+            .error(function(){
 
-        function selectPhoto(photo) {
-            var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
-            url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
-            WidgetService
-                .selectPhoto(vm.widgetId, {url: url})
-                .success(function(){
-                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-                })
-                .error(function(){
+            });
+    }
 
-                });
-        }
     }
 })();

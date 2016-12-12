@@ -1,13 +1,19 @@
-<nav class="navbar navbar-fixed-top tv-blue-navbar">
+<nav class="navbar navbar-fixed-top tv-green-navbar">
     <div class="container-fluid row">
 
         <div class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}" class="navbar-link tv-text-white tv-icon-padding">
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-green-navbar-text tv-text-white tv-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
             </a>
         </div>
-        <a class="navbar-brand tv-text-white tv-text-bold" href="#/user/{{model.userId}}/message/outbox">
+        <div class="navbar-text pull-right">
+            <a ng-click="model.logout()" class="navbar-link tv-green-navbar-text tv-icon-padding tv-text-white">
+          <span class="glyphicon glyphicon-log-out">
+          </span>
+            </a>
+        </div>
+        <a class="navbar-brand tv-text-white tv-green-navbar-text tv-text-bold" href="#/user/{{model.userId}}/message/outbox">
             Mail Outbox
         </a>
     </div>
@@ -20,19 +26,19 @@
        href="#/user/{{model.userId}}/message/inbox">Switch To Inbox</a>
     <div class="tv-large-margin-top" ng-repeat="message in model.sentMessages">
         <div><a href="#/user/{{model.userId}}/message/{{message._id}}">{{message.subject}}</a>
-        <div>Sent to {{message._to}} on {{model.formatDate(message.dateCreated)}}</div></div>
+        <div>Sent to {{message.toUsername}} on {{model.formatDate(message.dateCreated)}}</div></div>
     </div>
 </div>
 
-<nav class="navbar tv-blue-navbar navbar-fixed-bottom">
+<nav class="navbar tv-red-navbar navbar-fixed-bottom">
     <div class="container-fluid row">
-        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-text-white tv-icon-padding">
+        <div class="navbar-text pull-left"><a href="#/user/{{model.userId}}/message/inbox" class="navbar-link tv-red-navbar-text tv-text-white tv-icon-padding">
             <span class="glyphicon glyphicon-envelope"></span>
         </a>
         </div>
         <div class="pull-right navbar-text">
 
-            <a href="#/user/{{model.userId}}" class="navbar-link tv-icon-padding tv-text-white">
+            <a href="#/user/{{model.userId}}" class="navbar-link tv-red-navbar-text tv-icon-padding tv-text-white">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
 

@@ -73,18 +73,42 @@ module.exports = function(app,model) {
         var message = req.body;
         var userId = req.params.userId;
         var matchId = req.params.matchId;
-        model.messageModel
-            .createMessage(matchId,userId,message)
-            .then(function (retVal) {
-                    if (retVal) {
-                        res.send(retVal);
-                    } else {
-                        res.send('0');
-                    }
-                },
-                function (err) {
-                    res.sendStatus(400).send(err);
-                });
+        model.userModel
+            .findUserById(userId)
+            .then(function(user){
+                if(user){
+                    message.fromUsername = user.username;
+                    model.userModel
+                        .findUserById(matchId)
+                        .then(function(match){
+                            if(match){
+                                message.toUsername = match.username;
+                                model.messageModel
+                                    .createMessage(matchId,userId,message)
+                                    .then(function (retVal) {
+                                            if (retVal) {
+                                                res.send(retVal);
+                                            } else {
+                                                res.send('0');
+                                            }
+                                        },
+                                        function (err) {
+                                            res.sendStatus(400).send(err);
+                                        });
+                            }else{
+                                res.sendStatus(400);
+                            }
+                        },
+                        function(err){
+                            res.sendStatus(400).send(err);
+                        });
+                }else{
+                    res.sendStatus(400);
+                }
+            },
+            function(err){
+                res.sendStatus(400).send(err);
+            });
     }
 
     function findMessageById(req,res){

@@ -6,10 +6,12 @@ module.exports=function(){
             type: mongoose.Schema.Types.ObjectId,
             ref: 'userModel'
         },
+        toUsername: String,
         _from: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'userModel'
         },
+        fromUsername: String,
         subject: String,
         text: String,
         dateCreated: {type: Date, default: Date.now}

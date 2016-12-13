@@ -1,6 +1,6 @@
 module.exports = function (app, model) {
 
-    /*var passport = require('passport');
+    var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
     passport.use(new LocalStrategy(localStrategy));
     var FacebookStrategy = require('passport-facebook').Strategy;
@@ -10,7 +10,7 @@ module.exports = function (app, model) {
         callbackURL: "http://localhost:5000/assignment/auth/facebook/callback",
         profileFields: ['id', 'email', 'first_name', 'last_name']
     };
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));*/
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
     var bcrypt = require('bcrypt-nodejs');
 
@@ -78,7 +78,7 @@ module.exports = function (app, model) {
                 });
     }
 
-    /*passport.serializeUser(serializeUser);
+    passport.serializeUser(serializeUser);
     function serializeUser(user, done) {
         done(null, user);
     }
@@ -96,11 +96,11 @@ module.exports = function (app, model) {
                     done(err, null);
                 }
             );
-    }*/
+    }
 
     app.post('/assignment/api/user', createUser);
-    //app.post('/assignment/api/login', passport.authenticate('local'), login);
-    //app.get('/assignment/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+    app.post('/assignment/api/login', passport.authenticate('local'), login);
+    app.get('/assignment/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
     app.get('/assignment/auth/facebook/callback',function(req, res, next) {
         passport.authenticate('facebook', function (err, user, info) {
             // This is the default destination upon successful login.

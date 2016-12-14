@@ -29,7 +29,7 @@
         {{model.error}}
     </div>
     <div ng-repeat="user in model.users"><div class="pull-right">
-        <a class="btn btn-danger btn-block"
+        <a class="btn btn-danger"
            ng-click="model.deleteUser(user._id)">Delete User</a>
     </div><h2>{{user.username}}, {{user.age}}, User since {{model.formatDate(user.dateCreated)}}</h2>
     </div>
